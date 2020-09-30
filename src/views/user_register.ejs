@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cadastro</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='/css/user/register.css' />
+  </head>
+  <body>
+    <form method="POST">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="first_name" class="col-form-label">Nome</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nome" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="last_name" class="col-form-label">Sobrenome</label>
+          <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Sobrenome" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <label for="email" class="col-form-label">Endereço de email</label>
+          <input type="email" class="form-control" name="email" id="email" placeholder="nome@exemplo.com" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="password" class="col-form-label">Senha</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <label for="cpf" class="col-form-label">CPF</label>
+          <input type="text" class="form-control" name="cpf" id="cpf" placeholder="Sem pontos e traços">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="rg" class="col-form-label">RG</label>
+          <input type="text" class="form-control" id="rg" name="rg" placeholder="Sem pontos e traços">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="phone" class="col-form-label">Celular</label>
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Apenas números">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="birthdate" class="col-form-label">Data de Nascimento</label>
+          <input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="dd/mm/aaaa">
+        </div>
+        <div class="form-group col-md-4">
+          <legend for="gender" class="col-form-label">Sexo</legend>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="M">
+            <label class="form-check-label" for="inlineRadio1">Masculino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="F">
+            <label class="form-check-label" for="inlineRadio2">Feminino</label>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="marital_status" class="col-form-label">Estado Civil</label>
+          <select class="custom-select mr-sm-2" id="marital_status" name="marital_status">
+            <option value="1">Solteiro(a)</option>
+            <option value="2">Casado(a)</option>
+            <option value="3">Divorciado(a)</option>
+            <option value="4">Viúvo(a)</option>
+            <option value="5">Separado(a)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-9">
+          <label for="address" class="col-form-label">Endereço Completo</label>
+          <input type="text" class="form-control" name="address" id="address" placeholder="Digite o endereço completo">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="postalcode" class="col-form-label">CEP</label>
+          <input type="text" class="form-control" id="postalcode" name="postalcode" placeholder="00000-000">
+        </div>
+      </div>
+      <div class="form-group col-sm-10">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+      </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
