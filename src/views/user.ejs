@@ -11,13 +11,13 @@
   </head>
   <body>
 
-    <% users.forEach(function(user){ %>
-      <%- include('user/show', {user: user}); %>
-    <% }); %>
+    <% function teste(){
+      console.log('teste')
+    };%>
 
     <div class="card-container">
       <div>
-        <span onclick="">Buscar Usuários</span>
+        <span onclick=<%-teste()%>>Buscar Usuários</span>
       </div>
       <div>
         <table class="table">
