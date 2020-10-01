@@ -10,7 +10,9 @@
     <link rel='stylesheet' href='/css/user/user.css' />
   </head>
   <body>
-
+    <% function teste (){%>
+      <%console.log('testado')%>
+    <%} %>
     <div class="card-container">
       <div>
         <a class="btn btn-outline-secondary" href="/user/register" role="button">Cadastrar Usuário</a>
@@ -19,6 +21,7 @@
         <table class="table">
           <thead>
             <tr>
+              <th scope="col"></th>
               <th scope="col">id</th>
               <th scope="col">Nome</th>
               <th scope="col">Sobrenome</th>
@@ -28,6 +31,7 @@
             <tbody>
               <% for( let i = 0; i < data.length; i++ ) { %>
                 <tr>
+                  <td scope="row"><a href="user/register"><img src="/image/edit.svg" alt="trash" ></a></td>
                   <td scope="row"><%-data[i].Id%></td>
                   <td scope="row"><%-data[i].Nome%></td>
                   <td scope="row"><%-data[i].Sobrenome%></td>
