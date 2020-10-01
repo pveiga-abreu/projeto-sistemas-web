@@ -11,19 +11,18 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-    res.render('user_form');
+    res.render('user_form', {user: null});
 });
 
 router.post('/register', (req, res) => {
     let user = req.body;
-    console.log(user);
 
     let resp = user_controller.insert_user(user);
 
     if(resp) {
         res.status(201).redirect('/user');
     } else {
-        res.render('user_form');
+        res.render('user_form', {user: user});
     }
 });
 
