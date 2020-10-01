@@ -20,11 +20,14 @@ module.exports = {
     insert_user: user => {
         let valid = validate_user(user);
         if(valid) {
-            // Inserir dados no json
-
+            user_dao.insert_user(user)
             return true;
         } else {
             return false;
         }
+    },
+    search_user: () => {
+        const users =  user_dao.search_user()
+        return users
     }
 }
