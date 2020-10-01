@@ -2,3 +2,27 @@ body {
     margin: 2%;
     background-color: #f0f0f0;
 }
+span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    height: calc(2.75rem + 2px);
+    border-radius: .375rem;
+    box-shadow: 1px 2px 5px rgba(50,50,93,.7), 2px 2px 5px rgba(0,0,0,.1);
+    border: 0;
+    cursor: pointer;
+    margin-bottom: 1.3rem;
+  }
+  
+  span:hover {
+    transition: 0.2s;
+    box-shadow: 0 1px 3px rgba(50,50,93,.7), 1px 1px 3px rgba(0,0,0,.1);
+  }
+
+  
+  .span-container{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+  }
