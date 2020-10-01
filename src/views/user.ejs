@@ -11,45 +11,31 @@
   </head>
   <body>
 
-    <% function teste(){
-      console.log('teste')
-    };%>
-
     <div class="card-container">
       <div>
-        <span onclick=<%-teste()%>>Buscar Usuários</span>
+        <span >Buscar Usuários</span>
       </div>
       <div>
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">id</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Sobrenome</th>
+              <th scope="col">Email</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            <tbody>
+              <% for( let i = 0; i < data.length; i++ ) { %>
+                <tr>
+                  <td scope="row"><%-data[i].Id%></td>
+                  <td scope="row"><%-data[i].Nome%></td>
+                  <td scope="row"><%-data[i].Sobrenome%></td>
+                  <td scope="row"><%-data[i].Email%></td>
+                </tr>
+              <% } %>
+            
           </tbody>
-        </table>
         </table>
       </div>      
     </div>

@@ -1,28 +1,49 @@
+const fs = require('fs')
+
 module.exports ={
-  searchUsers : () => {
-    return new Promise(async (resolve, reject) => {
-      try{
-        const user = [
-          {
-          Id: 1,
-          Nome: "Lucas",
-          Sobrenome: "Alves",
-          Senha: "123",
-          Email: "lucastalves@ucl.br",
-          Sexo: "M",
-          CPF: "12345678910",
-          RG: "1355553",
-          Telefone: "999999999",
-          DataNascimento: "19/03/1984",
-          EstadoCivil: 2,
-          CEP: "29123456",
-          Endereco: "Nome da minha Rua, 100, Serra, ES"
-          }
-        ]
-        resolve(user)
-      }catch(err){
-        reject()
+  search_user : () => {
+    let list =[]
+    const data = fs.readFileSync('./src/database/users.json');
+    list = JSON.parse(data.toString())
+    return list
+  },
+  insert_user : (user) => {
+    let list =[]
+    const data = fs.readFileSync('./src/database/users.json');
+    list = JSON.parse(data.toString())
+
+    let newUser = JSON.parse(user.toString())
+    list.push(newUser)
+    list = JSON.stringify(list)
+    fs.writeFileSync('./src/database/users.json', list)
+
+  },
+  modify_user : (user) => {
+    let list =[]
+    const data = fs.readFileSync('./src/database/users.json');
+    list = JSON.parse(data.toString())
+
+    list.map(row => {
+      if(row.Id == user.id){
+        row = user
       }
     })
+
+    list = JSON.stringify(list)
+    fs.writeFileSync('./src/database/users.json', list)
+
+  },
+  remove_user : (user) => {
+    let list =[]
+    const data = fs.readFileSync('./src/database/users.json');
+    list = JSON.parse(data.toString())
+
+    list.filter(row => {
+      return row.Id != user.id
+    })
+
+    list = JSON.stringify(list)
+    fs.writeFileSync('./src/database/users.json', list)
   }
+
 }

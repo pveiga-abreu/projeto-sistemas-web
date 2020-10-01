@@ -1,13 +1,10 @@
 const user_controller = require('../controllers/user_controller');
 const express = require('express');
 const router = express.Router();
-const dataUsers = require('../database/user_dao')
 
-router.get('/', async (req, res) => {
-    
-    const data = await dataUsers.searchUsers()
-    console.log(data)
-    res.render('user',{data});
+router.get('/', (req, res) => {
+        const data =  user_controller.search_user()
+        res.render('user', {data:data})
 });
 
 router.get('/register', (req, res) => {
