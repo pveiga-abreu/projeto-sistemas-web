@@ -28,7 +28,7 @@ router.get('/update/:id', (req, res) => {
     let user = user_controller.search_user_by_id(id);
 
     res.render('user_up_form', {user: user, err: []});
-})
+});
 router.post('/update/:id', (req, res) => {
     let id = parseInt(req.params.id);
     let user = req.body;
@@ -39,6 +39,14 @@ router.post('/update/:id', (req, res) => {
         res.status(201).redirect('/user');
     } else {
         res.render('user_up_form', {user: user, err: err});
-    }})
+    }
+});
+
+router.post('/delete/:id', (req, res) => {
+    let id = parseInt(req.params.id);
+    user_controller.remove_user(id);
+
+    res.redirect('/user');
+});
 
 module.exports = router;

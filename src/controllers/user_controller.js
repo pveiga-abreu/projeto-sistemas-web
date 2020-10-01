@@ -41,5 +41,8 @@ module.exports = {
             return err;
         }
 
+    },
+    remove_user: id => {
+        user_dao.remove_user(id);
     }
 }

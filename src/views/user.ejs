@@ -21,22 +21,21 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col"></th>
               <th scope="col">id</th>
               <th scope="col">Nome</th>
               <th scope="col">Sobrenome</th>
               <th scope="col">Email</th>
+              <th scope="col">Editar</th>
             </tr>
           </thead>
             <tbody>
               <% for( let i = 0; i < data.length; i++ ) { %>
                 <tr>
-                  <td scope="row"><a href="user/register"><img src="/image/edit.svg" alt="trash" ></a></td>
                   <td scope="row"><%-data[i].Id%></td>
                   <td scope="row"><%-data[i].Nome%></td>
                   <td scope="row"><%-data[i].Sobrenome%></td>
                   <td scope="row"><%-data[i].Email%></td>
-                  <td scope="row"><a href="/user/update/<%= data[i].Id %>">Editar</a></td>
+                  <td scope="row"><a href="/user/update/<%= data[i].Id %>"><img src="/image/edit.svg" alt="trash" ></a></td>
                 </tr>
               <% } %>
             

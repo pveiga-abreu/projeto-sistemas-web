@@ -24,6 +24,11 @@ module.exports ={
     const data = fs.readFileSync('./src/database/users.json');
     list = JSON.parse(data);
 
+    //  Determinando ID
+    let last = list[list.length - 1];
+    let _id = last.Id + 1;
+
+    user.Id = _id;
     list.push(user);
     list = JSON.stringify(list);
     fs.writeFileSync('./src/database/users.json', list);
@@ -43,14 +48,16 @@ module.exports ={
     list = JSON.stringify(list);
     fs.writeFileSync('./src/database/users.json', list);
   },
-  remove_user : (user) => {
+  remove_user : (id) => {
     let list = [];
     const data = fs.readFileSync('./src/database/users.json');
     list = JSON.parse(data.toString());
 
-    list.filter(row => {
-      return row.Id != user.id;
-    })
+    for(let i=0; i<list.length; i++) {
+      if(list[i].Id === id) {
+        list.splice(i,1);
+      }
+    }
 
     list = JSON.stringify(list);
     fs.writeFileSync('./src/database/users.json', list);
