@@ -13,7 +13,7 @@
 
     <div class="card-container">
       <div>
-        <span >Buscar Usuários</span>
+        <a class="btn btn-outline-secondary" href="/user/register" role="button">Cadastrar Usuário</a>
       </div>
       <div>
         <table class="table">
@@ -32,6 +32,7 @@
                   <td scope="row"><%-data[i].Nome%></td>
                   <td scope="row"><%-data[i].Sobrenome%></td>
                   <td scope="row"><%-data[i].Email%></td>
+                  <td scope="row"><a href="/user/update/<%= data[i].Id %>">Editar</a></td>
                 </tr>
               <% } %>
             

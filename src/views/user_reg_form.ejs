@@ -10,8 +10,17 @@
     <link rel='stylesheet' href='/css/user/register.css' />
   </head>
   <body>
-    <% console.log(user) %> 
     <form method="POST">
+      <% if (user !== null) { %>
+        <div class="alert alert-danger" role="alert">
+          Corrija os seguintes campos:
+          <ul>
+            <% for( let i=0; i<err.length; i++ ) { %>
+              <li><%= err[i] %></li>
+            <% } %>
+          </ul>
+        </div>
+      <% } %>
 
       <div class="form-row">
         <div class="form-group col-md-6">

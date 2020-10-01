@@ -8,19 +8,37 @@ router.get('/', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-    res.render('user_form', {user: null});
+    res.render('user_reg_form', {user: null});
 });
-
 router.post('/register', (req, res) => {
     let user = req.body;
 
-    let resp = user_controller.insert_user(user);
+    let err = user_controller.insert_user(user);
 
-    if(resp) {
+    if(err === null) {
         res.status(201).redirect('/user');
     } else {
-        res.render('user_form', {user: user});
+        res.render('user_reg_form', {user: user, err: err});
     }
 });
+
+router.get('/update/:id', (req, res) => {
+    let id = parseInt(req.params.id);
+
+    let user = user_controller.search_user_by_id(id);
+
+    res.render('user_up_form', {user: user, err: []});
+})
+router.post('/update/:id', (req, res) => {
+    let id = parseInt(req.params.id);
+    let user = req.body;
+
+    let err = user_controller.update_user(id, user);
+
+    if(err === null) {
+        res.status(201).redirect('/user');
+    } else {
+        res.render('user_up_form', {user: user, err: err});
+    }})
 
 module.exports = router;
