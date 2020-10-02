@@ -2,9 +2,9 @@ const user_controller = require('../controllers/user_controller');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-        const data =  user_controller.search_user()
-        res.render('user', {data:data})
+router.get('/', async(req, res) => {
+        const data = await user_controller.search_user();
+        res.render('user', {data:data});
 });
 
 router.get('/register', (req, res) => {
