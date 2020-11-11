@@ -20,18 +20,25 @@ module.exports ={
     return null;
   },
   insert_user : (user) => {
-    let list = [];
-    const data = fs.readFileSync('./src/database/users.json');
-    list = JSON.parse(data);
+    try{
 
-    //  Determinando ID
-    let last = list[list.length - 1];
-    let _id = last.Id + 1;
+      let list = [];
+      const data = fs.readFileSync('./src/database/users.json');
+      list = JSON.parse(data);
+  
+      //  Determinando ID
+      let last = list[list.length - 1];
+      let _id = last.Id + 1;
+  
+      user.Id = _id;
+      list.push(user);
+      list = JSON.stringify(list);
+      fs.writeFileSync('./src/database/users.json', list);
 
-    user.Id = _id;
-    list.push(user);
-    list = JSON.stringify(list);
-    fs.writeFileSync('./src/database/users.json', list);
+    }catch(err){
+      return err
+    }
+
   },
   modify_user : (id, user) => {
     let list = [];

@@ -1,0 +1,14 @@
+{
+  "name": "projeto_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Marcus Castilho & Paulo Victor",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/app"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  }
+}
