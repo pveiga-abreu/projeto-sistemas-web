@@ -16,7 +16,6 @@ router.get('/update/:id', async (req, res) => {
   const id = parseInt(req.params.id);
 
   const user = await controller.get_user_by_id(id);
-  console.log(user);
 
   res.render('user_up_form', {user: user, err: []});
 });

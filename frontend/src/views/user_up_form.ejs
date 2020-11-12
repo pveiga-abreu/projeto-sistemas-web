@@ -10,7 +10,7 @@
     <link rel='stylesheet' href='/css/user/register.css' />
   </head>
   <body>
-    <form method="POST">
+    <form id="alterForm" enctype= "multipart/form-data">
       
       <% if (err.length > 0) { %>
         <div class="alert alert-danger" role="alert">
@@ -68,11 +68,11 @@
         <div class="form-group col-md-4">
           <legend for="Sexo" class="col-form-label">Sexo</legend>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Sexo" id="Sexo" value="M"  <% if (user.Sexo === 'M') { %><%= `CHECKED` %><% } %>>
+            <input class="form-check-input" type="radio" name="Sexo" id="SexoM" value="M"  <% if (user.Sexo === 'M') { %><%= `CHECKED` %><% } %>>
             <label class="form-check-label" for="inlineRadio1">Masculino</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Sexo" id="Sexo" value="F" <% if (user.Sexo === 'F') { %><%= `CHECKED` %><% } %>>
+            <input class="form-check-input" type="radio" name="Sexo" id="SexoF" value="F" <% if (user.Sexo === 'F') { %><%= `CHECKED` %><% } %>>
             <label class="form-check-label" for="inlineRadio2">Feminino</label>
           </div>
         </div>
@@ -91,7 +91,7 @@
       <div class="form-row">
         <div class="form-group col-md-9">
           <label for="Endereco" class="col-form-label">Endereço Completo</label>
-          <input type="text" class="form-control" name="Endereco" id="Endereco" placeholder="Digite o endereço completo" value=<%= user.Endereco %>>
+          <textarea type="text" class="form-control" name="Endereco" id="Endereco" placeholder="Digite o endereço completo" value=<%= user.Endereco %>></textarea>
         </div>
         <div class="form-group col-md-3">
           <label for="CEP" class="col-form-label">CEP</label>
@@ -100,13 +100,75 @@
       </div>
 
       <div class="form-group col-sm-10">
-        <a onClick="handleUpdate()" class="btn btn-primary">Alterar</a>
-        <a onClick="handleExclude()" class="btn btn-danger">Excluir</a>
+        <button type="submit" class="btn btn-primary">Alterar</button>
+        <a onclick="handleDelete(<%= user.Id %>)" class="btn btn-danger" style="color: #fff">Excluir</a>
         <a class="btn btn-outline-secondary" href="/user" role="button">Usuários</a>
       </div>
     </form>
 
-    <script type="text/javascript" src="../public/javascript/handleUser.js"></script>
+    <script type="text/javascript">
+      alterForm.onsubmit = async function (event) {
+
+        const nome = document.getElementById('Nome').value;
+        const sobrenome = document.getElementById('Sobrenome').value;
+        const email = document.getElementById('Email').value;
+        const senha = document.getElementById('Senha').value;
+        const cpf = document.getElementById('CPF').value;
+        const rg = document.getElementById('RG').value;
+        const tel = document.getElementById('Telefone').value;
+        const nascimento = document.getElementById('DataNascimento').value;
+        const sexo = $("sexoM").prop("checked") ? document.getElementById('SexoM').value : document.getElementById('SexoF').value;
+        const estadoCivil = document.getElementById('EstadoCivil').value;
+        const endereco = document.getElementById('Endereco').value;
+        const cep = document.getElementById('CEP').value;
+
+        form = {
+          nome, 
+          sobrenome, 
+          email, 
+          senha, 
+          cpf, 
+          rg, 
+          tel, 
+          nascimento, 
+          sexo, 
+          estadoCivil, 
+          endereco, 
+          cep
+        }
+
+        const resp = await fetch(`http://localhost:3003/user/update/${id}`, { 
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(form) 
+        });
+
+        alert(resp);
+
+        // if(resp.status == 201) {
+        //   alert(resp.data);
+        //   window.location.href = "/user";
+        // } else if (resp.status == 400) {
+        //   alert(`Campos faltantes ${resp.data.message.}`)
+        // } else {
+        //   alert(`Erro ao atualizar usuário ${id}!`);
+        // }
+      }
+
+      async function handleDelete(id) {
+        const resp = await fetch(`http://localhost:3003/user/delete/${id}`, { method: "DELETE" });
+
+        if(resp.status == 200) {
+          alert(`Usuário ${id} apagadado!`);
+          window.location.href = "/user";
+        } else {
+          alert(`Erro ao excluir usuário ${id}!`);
+        }
+
+      }
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
