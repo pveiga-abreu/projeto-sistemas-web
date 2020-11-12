@@ -22,7 +22,6 @@ router.post('/register', (req, res) => {
     
         res.status(201).json({status: true, message: 'Usuário Registrado'});
     }catch(err){
-        console.log(err)
         res.status(400).json({status: false, message: err.message})
     }
 
@@ -38,6 +37,7 @@ router.get('/search/:id', (req, res) => {
         res.status(500).json({status: false, message: err.message})
     }
 });
+
 router.put('/update/:id', (req, res) => {
     try{
         let id = parseInt(req.params.id);
