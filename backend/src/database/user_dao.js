@@ -2,18 +2,28 @@ const fs = require('fs')
 
 module.exports ={
   search_user : () => {
-    let list = [];
-    const data = fs.readFileSync('./src/database/users.json');
-    list = JSON.parse(data);
-    const newlist = list.map(({Senha, ...rest}) => rest)
-    return newlist;
+    try{
+      let list = [];
+      const data = fs.readFileSync('./src/database/users.json');
+      list = JSON.parse(data);
+
+      const newlist = list.map(({Senha, ...rest}) => rest)
+      return newlist;
+    }catch(err){
+      return err
+    }
   },
   search_user_by_id : (id) => {
-    const data = fs.readFileSync('./src/database/users.json');
-    let list = JSON.parse(data);
-    const newlist = list.filter(row => row.Id == id)
-    const user = newlist.map(({Senha, ...rest}) => rest)
-    return user
+    try{
+      const data = fs.readFileSync('./src/database/users.json');
+      let list = JSON.parse(data);
+
+      const newlist = list.filter(row => row.Id == id)
+      const user = newlist.map(({Senha, ...rest}) => rest)
+      return user
+    }catch(err){
+      return err
+    }
   },
   insert_user : (user) => {
     try{
@@ -33,7 +43,6 @@ module.exports ={
     }catch(err){
       return err
     }
-
   },
   modify_user : (id, user) => {
     try{

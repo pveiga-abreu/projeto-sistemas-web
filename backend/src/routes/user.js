@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.get('/', async(req, res) => {
     try{
-        const data = await user_controller.search_user();
-        res.json({status: true, data: data});
+        const users = await user_controller.search_user();
+        res.json({status: true, data: users});
     }catch(err){
         res.status(500).json({status: false, message: err.message})
     }
@@ -14,7 +14,6 @@ router.get('/', async(req, res) => {
 router.post('/register', (req, res) => {
     try{
         let user = req.body;
-
         const validation = user_controller.insert_user(user);
 
         if(!validation.status){
@@ -32,7 +31,7 @@ router.post('/register', (req, res) => {
 router.get('/search/:id', (req, res) => {
     try{
         let id = parseInt(req.params.id);
-        let user = user_controller.search_user_by_id(id);
+        const user = user_controller.search_user_by_id(id);
 
         res.json({status: true, data: user});
     }catch(err){
@@ -58,9 +57,12 @@ router.put('/update/:id', (req, res) => {
 
 router.delete('/delete/:id', (req, res) => {
     try{
-        
         let id = parseInt(req.params.id);
-        user_controller.remove_user(id);
+
+        const validation = user_controller.remove_user(id);
+        if(!validation.status){
+            throw validation
+        }
     
         res.json({status: true, message: 'Usuário Deletado'});
     }catch(err){
