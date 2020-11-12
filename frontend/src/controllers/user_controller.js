@@ -1,48 +1,57 @@
-const user_dao = require('../database/user_dao');
+const model = require('../model/user_model');
 
-function validate_user(user) {
-    let err = []
-
-    if(user.Nome == '' || user.Nome == null || typeof user.Nome == "undefined") err.push("Nome");
-    if(user.Sobrenome == '' || user.Sobrenome == null || typeof user.Sobrenome == "undefined") err.push("Sobrenome");
-    if(user.Email == '' || user.Email == null || typeof user.Email == "undefined") err.push("Email");
-    if(user.Senha == '' || user.Senha == null || typeof user.Senha == "undefined") err.push("Senha");
-    if(user.DataNascimento != '' && user.DataNascimento.search(/^[0-3][0-9]\/[0-1][0-9]\/[0-9][0-9][0-9][0-9]$/g) == -1) err.push("Data de Nascimento");
-    if(user.CEP != '' && user.CEP.search(/^[0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9]$/g) == -1) err.push("CEP");
-
-    return err;
+estado_civil = {
+  '1': 'Solteiro',
+  '2': 'Casado',
+  '3': 'Divorciado',
+  '4': 'Viúvo', 
+  '5': 'Separado'
 }
 
 module.exports = {
-    insert_user: user => {
-        let err = validate_user(user);
-        if(err.length === 0) {
-            user_dao.insert_user(user);
-            return null;
-        } else {
-            return err;
-        }
-    },
-    search_user: () => {
-        const users =  user_dao.search_user();
-        return users;
-    },
-    search_user_by_id: (id) => {
-        let user = user_dao.search_user_by_id(id);
 
-        return user;
-    },
-    update_user: (id, user) => {
-        let err = validate_user(user);
-        if(err.length === 0) {
-            user_dao.modify_user(id, user);
-            return null;
-        } else {
-            return err;
-        }
+  get_users: async () => {
 
-    },
-    remove_user: id => {
-        user_dao.remove_user(id);
+    const response = await model.get_users();
+
+    if(response === null) {
+      return null; 
+    } else { 
+      let users = response.data;
+
+      for(let user of users) {
+        user.EstadoCivil = estado_civil[user.EstadoCivil];
+        
+        if(user.Sexo === 'M') user.Sexo = 'Masculino';
+        else user.Sexo = 'Feminino';
+      }
+
+      return users;
     }
+
+  },
+  get_user_by_id: async id => {
+
+    const response = await model.get_user_by_id(id);
+    
+    if(response === null) return null;
+    else return response.data[0];
+
+  },
+  create_user: async data => {
+ 
+    
+
+  },
+  update_user: (id, data) => {
+
+
+
+  },
+  delete_user: id => {
+
+
+
+  }
+
 }
