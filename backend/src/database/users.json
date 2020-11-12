@@ -56,5 +56,20 @@
 		"Endereco": "",
 		"CEP": "",
 		"Id": 5
+	},
+	{
+		"Nome": "Manoel",
+		"Sobrenome": "Castilho",
+		"Email": "manoel@ucl.br",
+		"Senha": "123",
+		"CPF": "12345678910",
+		"RG": "1355553",
+		"Telefone": "999999999",
+		"DataNascimento": "19/03/1984",
+		"Sexo": "M",
+		"EstadoCivil": "2",
+		"Endereco": "Endereço",
+		"CEP": "29167-168",
+		"Id": 7
 	}
 ]

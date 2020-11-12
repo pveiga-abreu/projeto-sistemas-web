@@ -15,16 +15,16 @@ router.post('/register', (req, res) => {
     try{
         let user = req.body;
 
-        
         const validation = user_controller.insert_user(user);
-        if(validation.length > 0){
+
+        if(!validation.status){
             throw validation
         }
     
         res.status(201).json({status: true, message: 'Usuário Registrado'});
     }catch(err){
         console.log(err)
-        res.status(500).json({status: false, message: err})
+        res.status(400).json({status: false, message: err.message})
     }
 
 });
@@ -32,33 +32,40 @@ router.post('/register', (req, res) => {
 router.get('/search/:id', (req, res) => {
     try{
         let id = parseInt(req.params.id);
-
         let user = user_controller.search_user_by_id(id);
 
         res.json({status: true, data: user});
-
     }catch(err){
         res.status(500).json({status: false, message: err.message})
     }
 });
-router.post('/update/:id', (req, res) => {
-    let id = parseInt(req.params.id);
-    let user = req.body;
+router.put('/update/:id', (req, res) => {
+    try{
+        let id = parseInt(req.params.id);
+        let user = req.body;
+    
+        const validation = user_controller.update_user(id, user);
+    
+        if(!validation.status){
+            throw validation
+        }
 
-    let err = user_controller.update_user(id, user);
-
-    if(err === null) {
-        res.status(201).redirect('/user');
-    } else {
-        res.render('user_up_form', {user: user, err: err});
+        res.status(201).json({status: true, message: 'Usuário Atualizado'});
+    }catch(err){
+        res.status(400).json({status: false, message: err.message})
     }
 });
 
-router.post('/delete/:id', (req, res) => {
-    let id = parseInt(req.params.id);
-    user_controller.remove_user(id);
-
-    res.redirect('/user');
+router.delete('/delete/:id', (req, res) => {
+    try{
+        
+        let id = parseInt(req.params.id);
+        user_controller.remove_user(id);
+    
+        res.json({status: true, message: 'Usuário Deletado'});
+    }catch(err){
+        res.status(500).json({status: false, message: err.message})
+    }
 });
 
 module.exports = router;

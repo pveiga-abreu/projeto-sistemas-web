@@ -1,31 +1,20 @@
 const user_dao = require('../database/user_dao');
-
-function validate_user(user) {
-    let err = []
-
-    if(user.Nome == '' || user.Nome == null || typeof user.Nome == "undefined") err.push({Nome: 'Campo não passou na validação'});
-    if(user.Sobrenome == '' || user.Sobrenome == null || typeof user.Sobrenome == "undefined") err.push({Sobrenome: 'Campo não passou na validação'});
-    if(user.Email == '' || user.Email == null || typeof user.Email == "undefined") err.push({Email: 'Campo não passou na validação'});
-    if(user.Senha == '' || user.Senha == null || typeof user.Senha == "undefined") err.push({Senha: 'Campo não passou na validação'});
-    if(user.DataNascimento != '' && user.DataNascimento.search(/^[0-3][0-9]\/[0-1][0-9]\/[0-9][0-9][0-9][0-9]$/g) == -1) err.push({DataNascimento: 'Campo não passou na validação'});
-    if(user.CEP != '' && user.CEP.search(/^[0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9]$/g) == -1) err.push({CEP: 'Campo não passou na validação'});
-
-    return err;
-}
+const functions = require('../functions/index')
 
 module.exports = {
     insert_user: user => {
-            try{
-                let err = validate_user(user);
-    
-                if(err.length > 0) {
-                    throw err
-                }
-                user_dao.insert_user(user);
-            }catch(err){
-                return err
+        try{
+            let err = functions.validate_user(user);
+
+            if(err.length > 0) {
+                throw err
             }
-        
+            user_dao.insert_user(user);
+
+            return {status: true}
+        }catch(err){
+            return {status: false, message: err}
+        }
     },
     search_user: () => {
         const users =  user_dao.search_user();
@@ -33,18 +22,20 @@ module.exports = {
     },
     search_user_by_id: (id) => {
         let user = user_dao.search_user_by_id(id);
-
         return user;
     },
     update_user: (id, user) => {
-        let err = validate_user(user);
-        if(err.length === 0) {
+        try{
+            let err = functions.validate_user(user);
+            if(err.length > 0) {
+                throw err
+            }
             user_dao.modify_user(id, user);
-            return null;
-        } else {
-            return err;
-        }
 
+            return {status: true}
+        }catch(err){
+            return {status: false, message: err}
+        }
     },
     remove_user: id => {
         user_dao.remove_user(id);

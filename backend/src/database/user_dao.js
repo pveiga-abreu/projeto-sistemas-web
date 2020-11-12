@@ -5,23 +5,18 @@ module.exports ={
     let list = [];
     const data = fs.readFileSync('./src/database/users.json');
     list = JSON.parse(data);
-    return list;
+    const newlist = list.map(({Senha, ...rest}) => rest)
+    return newlist;
   },
   search_user_by_id : (id) => {
     const data = fs.readFileSync('./src/database/users.json');
     let list = JSON.parse(data);
-
-    for(const user of list) {
-      if(user.Id === id) {
-        return user;
-      }
-    }
-
-    return null;
+    const newlist = list.filter(row => row.Id == id)
+    const user = newlist.map(({Senha, ...rest}) => rest)
+    return user
   },
   insert_user : (user) => {
     try{
-
       let list = [];
       const data = fs.readFileSync('./src/database/users.json');
       list = JSON.parse(data);
@@ -41,32 +36,37 @@ module.exports ={
 
   },
   modify_user : (id, user) => {
-    let list = [];
-    const data = fs.readFileSync('./src/database/users.json');
-    list = JSON.parse(data);
+    try{
+      let list = [];
+      const data = fs.readFileSync('./src/database/users.json');
+      list = JSON.parse(data);
 
-    for(let i=0; i <list.length; i++) {
-      if(list[i].Id === id) {
-        list[i] = user;
-        list[i].Id = id;
-      }
+      let newList = list.map(row => {
+        if(row.Id == id){
+          row = user
+          row.Id = id
+        }
+        return row
+      })
+      
+      newList = JSON.stringify(newList);
+      fs.writeFileSync('./src/database/users.json', newList);
+    }catch(err){
+      return err
     }
-    
-    list = JSON.stringify(list);
-    fs.writeFileSync('./src/database/users.json', list);
   },
   remove_user : (id) => {
-    let list = [];
-    const data = fs.readFileSync('./src/database/users.json');
-    list = JSON.parse(data.toString());
+    try{
+      let list = [];
+      const data = fs.readFileSync('./src/database/users.json');
+      list = JSON.parse(data.toString());
 
-    for(let i=0; i<list.length; i++) {
-      if(list[i].Id === id) {
-        list.splice(i,1);
-      }
+      let newList  = list.filter(row => row.Id !== id)
+
+      newList = JSON.stringify(newList);
+      fs.writeFileSync('./src/database/users.json', newList);
+    }catch(err){
+      return err
     }
-
-    list = JSON.stringify(list);
-    fs.writeFileSync('./src/database/users.json', list);
   }
 }
