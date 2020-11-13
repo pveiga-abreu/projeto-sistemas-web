@@ -18,9 +18,8 @@ module.exports ={
       const data = fs.readFileSync('./src/database/users.json');
       let list = JSON.parse(data);
 
-      const newlist = list.filter(row => row.Id == id)
-      const user = newlist.map(({Senha, ...rest}) => rest)
-      return user
+      const user = list.filter(row => row.Id == id);
+      return user;
     }catch(err){
       return err
     }

@@ -41,47 +41,6 @@ module.exports = {
 
     }
 
-  },
-  create_user: async data => {
-
-    const response = await axios({
-      method: 'POST',
-      url: `${URL}/user`,
-      data: data,
-      headers: {
-        'content-type': 'application/json'
-      }
-    });
-    
-    if(response.status == 201) {}
-
-
-  },
-  update_user: async (id, data) => {
-
-    const response = await axios({
-      method: 'PUT',
-      url: `${URL}/user/${id}`,
-      data: data,
-      headers: {
-        'content-type': 'application/json'
-      }
-    });
-
-    if(response.status == 201) {}
-
-
-  },
-  delete_user: async id => {
-
-    const response = await axios({
-      method: 'DELETE',
-      url: `${URL}/user/${id}`
-    });
-
-    if(response.status == 200) {}
-
-
   }
 
 }

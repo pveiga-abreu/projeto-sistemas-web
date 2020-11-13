@@ -24,11 +24,15 @@
       <% } %>
 
       <div class="form-row">
+        <div class="form-group col-md-1">
+          <label for="Id" class="col-form-label">Id</label>
+          <input type="text" class="form-control" id="Id" name="Id" placeholder="Id" value=<%= user.Id %> disabled>
+        </div>
         <div class="form-group col-md-6">
           <label for="Nome" class="col-form-label">Nome</label>
           <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" value=<%= user.Nome %> required>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-5">
           <label for="Sobrenome" class="col-form-label">Sobrenome</label>
           <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome" value=<%= user.Sobrenome %> required>
         </div>
@@ -107,8 +111,10 @@
     </form>
 
     <script type="text/javascript">
+
       alterForm.onsubmit = async function (event) {
 
+        const id = document.getElementById('Id').value;
         const nome = document.getElementById('Nome').value;
         const sobrenome = document.getElementById('Sobrenome').value;
         const email = document.getElementById('Email').value;
@@ -117,44 +123,58 @@
         const rg = document.getElementById('RG').value;
         const tel = document.getElementById('Telefone').value;
         const nascimento = document.getElementById('DataNascimento').value;
-        const sexo = $("sexoM").prop("checked") ? document.getElementById('SexoM').value : document.getElementById('SexoF').value;
+        const sexo = document.getElementById('SexoM').checked === true ? 
+                      document.getElementById('SexoM').value :
+                      document.getElementById('SexoF').checked === true ? 
+                      document.getElementById('SexoF').value :
+                      "";
         const estadoCivil = document.getElementById('EstadoCivil').value;
         const endereco = document.getElementById('Endereco').value;
         const cep = document.getElementById('CEP').value;
 
         form = {
-          nome, 
-          sobrenome, 
-          email, 
-          senha, 
-          cpf, 
-          rg, 
-          tel, 
-          nascimento, 
-          sexo, 
-          estadoCivil, 
-          endereco, 
-          cep
+          Nome: nome, 
+          Sobrenome: sobrenome, 
+          Email: email, 
+          Senha: senha, 
+          CPF: cpf,  
+          RG: rg,  
+          Telefone: tel, 
+          DataNascimento: nascimento,  
+          Sexo: sexo,  
+          EstadoCivil: estadoCivil,  
+          Endereco: endereco,  
+          CEP: cep
         }
 
         const resp = await fetch(`http://localhost:3003/user/update/${id}`, { 
           method: "PUT",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(form) 
+          headers: new Headers({'Content-Type': 'application/json'}),
+          body: JSON.stringify(form)
         });
 
-        alert(resp);
+        const data = await resp.json()
 
-        // if(resp.status == 201) {
-        //   alert(resp.data);
-        //   window.location.href = "/user";
-        // } else if (resp.status == 400) {
-        //   alert(`Campos faltantes ${resp.data.message.}`)
-        // } else {
-        //   alert(`Erro ao atualizar usuário ${id}!`);
-        // }
+        if(resp.status === 201) {
+
+          alert(`Usuário ${id} atualizado com sucesso!`);
+          window.location.href = "/user";
+
+        } else if (resp.status === 400) {
+
+          let message = "Verifique os Campos:\n";
+
+          for(const msg of data.message) {
+            message += ` - ${Object.keys(msg)[0]}\n`
+          }
+
+          alert(`${message}`)
+
+        } else {
+          
+          alert(`Erro ao atualizar usuário ${id}!`);
+
+        }
       }
 
       async function handleDelete(id) {
@@ -168,6 +188,7 @@
         }
 
       }
+
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

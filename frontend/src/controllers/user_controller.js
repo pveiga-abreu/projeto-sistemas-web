@@ -23,7 +23,8 @@ module.exports = {
         user.EstadoCivil = estado_civil[user.EstadoCivil];
         
         if(user.Sexo === 'M') user.Sexo = 'Masculino';
-        else user.Sexo = 'Feminino';
+        else if(user.Sexo === 'F') user.Sexo = 'Feminino';
+        else user.Sexo = '';
       }
 
       return users;
@@ -36,21 +37,6 @@ module.exports = {
     
     if(response === null) return null;
     else return response.data[0];
-
-  },
-  create_user: async data => {
- 
-    
-
-  },
-  update_user: (id, data) => {
-
-
-
-  },
-  delete_user: id => {
-
-
 
   }
 
