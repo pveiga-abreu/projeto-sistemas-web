@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
@@ -21,9 +22,14 @@ import { ClientService } from './services/client/client.service';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [ClientService],
-  bootstrap: [AppComponent]
+  providers: [
+    ClientService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

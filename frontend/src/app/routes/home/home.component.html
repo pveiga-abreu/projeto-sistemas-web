@@ -18,20 +18,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row">teste</td>
-            <td scope="row"><a [routerLink]="['/alter/1']"><img src="../../../assets/images/edit.svg" alt="edit" ></a></td>
+        <tr *ngFor="let client of clientList">
+            <td scope="row">{{client.id}}</td>
+            <td scope="row">{{client.name}}</td>
+            <td scope="row">{{client.surname}}</td>
+            <td scope="row">{{client.email}}</td>
+            <td scope="row">{{client.gender}}</td>
+            <td scope="row">{{client.cpf}}</td>
+            <td scope="row">{{client.rg}}</td>
+            <td scope="row">{{client.tel}}</td>
+            <td scope="row">{{client.birthDate}}</td>
+            <td scope="row">{{client.maritalStatus}}</td>
+            <td scope="row">{{client.postalCode}}</td>
+            <td scope="row">{{client.address}}</td>
+            <td scope="row"><a [routerLink]="['/alter', client.id]"><img src="../../../assets/images/edit.svg" alt="edit" ></a></td>
         </tr>
     </tbody>
 </table>
