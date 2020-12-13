@@ -11,8 +11,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private clientService: ClientService) { }
 
-  async ngOnInit(): Promise<void> {
-    this.clientList = await this.clientService.getAllClients();
+  ngOnInit(): void {
+    this.clientService.getAllClients()
+    .then(data => {
+      this.clientList = data;
+    })
+    .catch(err => {
+      alert("Falha ao buscar dados dos clientes");
+    });
   }
 
 }

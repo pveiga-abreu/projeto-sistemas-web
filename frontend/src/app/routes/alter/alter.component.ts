@@ -13,21 +13,41 @@ export class AlterComponent implements OnInit {
 
   constructor(private clientService: ClientService, private route: ActivatedRoute, private router: Router) { }
 
-  async ngOnInit(): Promise<void> {
-    let id = this.route.snapshot.paramMap.get('id');
-
-    if(id) this.client = await this.clientService.getClient(parseInt(id));
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if(id) {
+      this.clientService.getClient(parseInt(id))
+      .then(data => {
+        this.client = data;
+      })
+      .catch(err => {
+        alert('Falha ao buscar os dados do cliente!');
+        this.router.navigate(['']);
+      });
+    }
   }
 
-  async alterar(): Promise<void> {
-    const res = await this.clientService.updateClient(this.client);
-
-    this.router.navigate(['']);
+  alterar(): void {
+    this.clientService.updateClient(this.client)
+    .then(data => {
+      alert("Dados atualizados com sucesso!");
+      this.router.navigate(['']);
+    })
+    .catch(err => {
+      alert(err.error.join('\n'));
+    });
+    
   }
+  
+  excluir(): void {
+    this.clientService.deleteClient(this.client)
+    .then(data => {
+      alert("Cliente excluído com sucesso!");
+      this.router.navigate(['']);
+    })
+    .catch(err => {
+      alert("Falha ao excluir cliente!");
+    });
 
-  async excluir(): Promise<void> {
-    const res = await this.clientService.deleteClient(this.client);
-
-    this.router.navigate(['']);
   }
 }

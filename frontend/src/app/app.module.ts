@@ -10,6 +10,7 @@ import { RegisterComponent } from './routes/register/register.component';
 import { HomeComponent } from './routes/home/home.component';
 import { AlterComponent } from './routes/alter/alter.component';
 import { ClientService } from './services/client/client.service';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ClientService } from './services/client/client.service';
     NavComponent,
     RegisterComponent,
     HomeComponent,
-    AlterComponent
+    AlterComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

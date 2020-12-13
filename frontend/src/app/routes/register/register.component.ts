@@ -15,10 +15,16 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async registrar(): Promise<void> {
-    const res = await this.clientService.createClient(this.client);
+  registrar(): void {
+    this.clientService.createClient(this.client)
+    .then(data => {
+      alert("Cliente cadastrado com sucesso!");
+      this.router.navigate(['']);
+    })
+    .catch(err => {
+      alert(err.error.join('\n'));
+    });
     
-    this.router.navigate(['']);
   }
 
 }
