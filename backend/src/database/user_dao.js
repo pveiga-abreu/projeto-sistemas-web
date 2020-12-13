@@ -19,28 +19,32 @@ module.exports ={
       let list = JSON.parse(data);
 
       const user = list.filter(row => row.Id == id);
-      return user;
+      return user[0];
     }catch(err){
       return err
     }
   },
   insert_user : (user) => {
-    try{
+    try {
       let list = [];
       const data = fs.readFileSync('./src/database/users.json');
       list = JSON.parse(data);
   
       //  Determinando ID
-      let last = list[list.length - 1];
-      let _id = last.Id + 1;
+      let _id = 1;
+
+      if (list.length > 0) {
+        let last = list[list.length - 1]; 
+        _id = last.Id + 1;
+      } 
   
       user.Id = _id;
       list.push(user);
       list = JSON.stringify(list);
       fs.writeFileSync('./src/database/users.json', list);
 
-    }catch(err){
-      return err
+    } catch(err) {
+      throw err;
     }
   },
   modify_user : (id, user) => {

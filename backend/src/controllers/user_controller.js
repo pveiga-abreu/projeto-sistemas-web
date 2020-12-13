@@ -17,26 +17,27 @@ module.exports = {
         }catch(err){
             return err
         }
-    },   
+    },
     insert_user: user => {
         try{
             let err = functions.validate_user(user);
 
             if(err.length > 0) {
-                throw err
+                throw err;
             }
             user_dao.insert_user(user);
 
-            return {status: true}
-        }catch(err){
-            return {status: false, message: err}
+            return {status: true};
+        } catch(err) {
+            return {status: false, message: err};
         }
     },
     update_user: (id, user) => {
         try{
             let err = functions.validate_user(user);
+
             if(err.length > 0) {
-                throw err
+                throw err;
             }
             user_dao.modify_user(id, user);
 
