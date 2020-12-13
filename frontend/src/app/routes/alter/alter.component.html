@@ -2,63 +2,63 @@
     <div class="form-row">
         <div class="form-group col-md-1">
             <label for="Id" class="col-form-label">Id</label>
-            <input type="text" class="form-control" id="Id" name="Id" placeholder="Id" value="{{client.id}}" disabled>
+            <input type="text" class="form-control" id="Id" name="Id" placeholder="Id" value="{{client.Id}}" disabled>
         </div>
         <div class="form-group col-md-6">
             <label for="Nome" class="col-form-label">Nome</label>
-            <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" [(ngModel)]="client.name" >
+            <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome" [(ngModel)]="client.Nome" >
         </div>
         <div class="form-group col-md-5">
             <label for="Sobrenome" class="col-form-label">Sobrenome</label>
-            <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome" [(ngModel)]="client.surname" >
+            <input type="text" class="form-control" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome" [(ngModel)]="client.Sobrenome" >
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-8">
             <label for="Email" class="col-form-label">Endereço de email</label>
-            <input type="email" class="form-control" name="Email" id="Email" placeholder="nome@exemplo.com" [(ngModel)]="client.email" >
+            <input type="email" class="form-control" name="Email" id="Email" placeholder="nome@exemplo.com" [(ngModel)]="client.Email" >
         </div>
         <div class="form-group col-md-4">
             <label for="Senha" class="col-form-label">Senha</label>
-            <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Senha" [(ngModel)]="client.password" >
+            <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Senha" [(ngModel)]="client.Senha" >
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-5">
             <label for="CPF" class="col-form-label">CPF</label>
-            <input type="text" class="form-control" name="CPF" id="CPF" placeholder="Sem pontos e traços" [(ngModel)]="client.cpf" >
+            <input type="text" class="form-control" name="CPF" id="CPF" placeholder="Sem pontos e traços" [(ngModel)]="client.CPF" >
         </div>
         <div class="form-group col-md-3">
             <label for="RG" class="col-form-label">RG</label>
-            <input type="text" class="form-control" id="RG" name="RG" placeholder="Sem pontos e traços" [(ngModel)]="client.rg" >
+            <input type="text" class="form-control" id="RG" name="RG" placeholder="Sem pontos e traços" [(ngModel)]="client.RG" >
         </div>  
         <div class="form-group col-md-4">
             <label for="Telefone" class="col-form-label">Telefone</label>
-            <input type="text" class="form-control" id="Telefone" name="Telefone" placeholder="Apenas números" [(ngModel)]="client.tel" >
+            <input type="text" class="form-control" id="Telefone" name="Telefone" placeholder="Apenas números" [(ngModel)]="client.Telefone" >
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="DataNascimento" class="col-form-label">Data de Nascimento</label>
-            <input type="text" class="form-control" name="DataNascimento" id="DataNascimento" placeholder="dd/mm/aaaa" [(ngModel)]="client.birthDate" >
+            <input type="text" class="form-control" name="DataNascimento" id="DataNascimento" placeholder="dd/mm/aaaa" [(ngModel)]="client.DataNascimento" >
         </div>
         <div class="form-group col-md-3">
             <legend for="Sexo" class="col-form-label">Sexo</legend>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="SexoM" id="SexoM" value="M" [(ngModel)]="client.gender" >
+                <input class="form-check-input" type="radio" name="SexoM" id="SexoM" value="M" [(ngModel)]="client.Sexo" >
                 <label class="form-check-label" for="inlineRadio1">Masculino</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="SexoF" id="SexoF" value="F" [(ngModel)]="client.gender" >
+                <input class="form-check-input" type="radio" name="SexoF" id="SexoF" value="F" [(ngModel)]="client.Sexo" >
                 <label class="form-check-label" for="inlineRadio2">Feminino</label>
             </div>
         </div>
         <div class="form-group col-md-5">
             <label for="EstadoCivil" class="col-form-label">Estado Civil</label>
-            <select class="custom-select mr-sm-2" id="EstadoCivil" name="EstadoCivil" [(ngModel)]="client.maritalStatus" >
+            <select class="custom-select mr-sm-2" id="EstadoCivil" name="EstadoCivil" [(ngModel)]="client.EstadoCivil" >
                 <option value="1">Solteiro(a)</option>
                 <option value="2">Casado(a)</option>
                 <option value="3">Divorciado(a)</option>
@@ -71,11 +71,11 @@
     <div class="form-row">
         <div class="form-group col-md-9">
             <label for="Endereco" class="col-form-label">Endereço Completo</label>
-            <input type="text" class="form-control" name="Endereco" id="Endereco" placeholder="Digite o endereço completo" [(ngModel)]="client.address" >
+            <textarea type="text" class="form-control" name="Endereco" id="Endereco" placeholder="Digite o endereço completo" [(ngModel)]="client.Endereco" ></textarea>
         </div>
         <div class="form-group col-md-3">
             <label for="CEP" class="col-form-label">CEP</label>
-            <input type="text" class="form-control" id="CEP" name="CEP" placeholder="00000-000" [(ngModel)]="client.postalCode" >
+            <input type="text" class="form-control" id="CEP" name="CEP" placeholder="00000-000" [(ngModel)]="client.CEP" >
         </div>
     </div>
 

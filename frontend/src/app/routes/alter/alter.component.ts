@@ -13,19 +13,21 @@ export class AlterComponent implements OnInit {
 
   constructor(private clientService: ClientService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     let id = this.route.snapshot.paramMap.get('id');
 
-    if(id) this.client = this.clientService.getClient(parseInt(id));
+    if(id) this.client = await this.clientService.getClient(parseInt(id));
   }
 
-  alterar() {
-    this.clientService.updateClient(this.client);
-    this.router.navigate(['home']);
+  async alterar(): Promise<void> {
+    const res = await this.clientService.updateClient(this.client);
+
+    this.router.navigate(['']);
   }
 
-  excluir() {
-    this.clientService.deleteClient(this.client);
+  async excluir(): Promise<void> {
+    const res = await this.clientService.deleteClient(this.client);
+
     this.router.navigate(['']);
   }
 }

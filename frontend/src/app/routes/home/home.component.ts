@@ -11,8 +11,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private clientService: ClientService) { }
 
-  ngOnInit(): void {
-    this.clientList = this.clientService.clients;
+  async ngOnInit(): Promise<void> {
+    this.clientList = await this.clientService.getAllClients();
   }
 
 }

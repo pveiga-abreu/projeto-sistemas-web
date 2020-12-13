@@ -15,8 +15,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  registrar() {
-    this.clientService.createClient(this.client);
+  async registrar(): Promise<void> {
+    const res = await this.clientService.createClient(this.client);
+    
     this.router.navigate(['']);
   }
 

@@ -21,9 +21,9 @@ import { ClientService } from './services/client/client.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     ClientService

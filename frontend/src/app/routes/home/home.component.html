@@ -19,19 +19,19 @@
     </thead>
     <tbody>
         <tr *ngFor="let client of clientList">
-            <td scope="row">{{client.id}}</td>
-            <td scope="row">{{client.name}}</td>
-            <td scope="row">{{client.surname}}</td>
-            <td scope="row">{{client.email}}</td>
-            <td scope="row">{{client.gender}}</td>
-            <td scope="row">{{client.cpf}}</td>
-            <td scope="row">{{client.rg}}</td>
-            <td scope="row">{{client.tel}}</td>
-            <td scope="row">{{client.birthDate}}</td>
-            <td scope="row">{{client.maritalStatus}}</td>
-            <td scope="row">{{client.postalCode}}</td>
-            <td scope="row">{{client.address}}</td>
-            <td scope="row"><a [routerLink]="['/alter', client.id]"><img src="../../../assets/images/edit.svg" alt="edit" ></a></td>
+            <td scope="row">{{client.Id}}</td>
+            <td scope="row">{{client.Nome}}</td>
+            <td scope="row">{{client.Sobrenome}}</td>
+            <td scope="row">{{client.Email}}</td>
+            <td scope="row">{{client.Sexo}}</td>
+            <td scope="row">{{client.CPF}}</td>
+            <td scope="row">{{client.RG}}</td>
+            <td scope="row">{{client.Telefone}}</td>
+            <td scope="row">{{client.DataNascimento}}</td>
+            <td scope="row">{{client.EstadoCivil}}</td>
+            <td scope="row">{{client.CEP}}</td>
+            <td scope="row">{{client.Endereco}}</td>
+            <td scope="row"><a [routerLink]="['/alter', client.Id]"><img src="../../../assets/images/edit.svg" alt="edit" ></a></td>
         </tr>
     </tbody>
 </table>
